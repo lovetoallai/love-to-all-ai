@@ -1,0 +1,376 @@
+/* ─────────────────────────────────────────
+   LOVE TO ALL AI — style.css
+   Design: Soft cosmic minimalism
+   Palette: Deep midnight blue + warm ivory + gentle gold
+───────────────────────────────────────── */
+
+:root {
+  --sky:    #0a0f1a;
+  --deep:   #0d1829;
+  --mid:    #1a2d4a;
+  --glow:   #c8a96e;   /* warm gold */
+  --cream:  #f5f0e8;
+  --muted:  #8a9bb5;
+  --white:  #fdfbf7;
+  --signal: #4a9eff;   /* peace blue */
+  --sent:   #6ec87a;   /* confirmed green */
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-mono:  'Share Tech Mono', monospace;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Reset & Base ─────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--sky);
+  color: var(--cream);
+  font-family: var(--font-serif);
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ── Background canvas ────────────────── */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Container ────────────────────────── */
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 560px;
+  padding: 60px 28px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+
+  /* Fade-in on load */
+  opacity: 0;
+  animation: page-in 1.4s var(--ease-out) 0.3s forwards;
+}
+
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Header ───────────────────────────── */
+.header {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.35em;
+  color: var(--glow);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.title {
+  font-family: var(--font-mono);
+  font-size: clamp(22px, 6vw, 34px);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  color: var(--white);
+  text-shadow: 0 0 40px rgba(200, 169, 110, 0.25);
+  line-height: 1;
+}
+
+/* ── Message block ────────────────────── */
+.message-block {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 420px;
+}
+
+.message-en {
+  font-size: clamp(16px, 3.5vw, 19px);
+  font-weight: 400;
+  line-height: 2;
+  color: var(--cream);
+  letter-spacing: 0.02em;
+  margin-bottom: 28px;
+}
+
+.message-en em {
+  font-style: italic;
+  color: var(--glow);
+}
+
+.message-ja {
+  font-size: clamp(13px, 3vw, 15px);
+  font-weight: 400;
+  line-height: 2.1;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.message-ja em {
+  font-style: italic;
+  color: rgba(200, 169, 110, 0.7);
+}
+
+/* ── Signal Button ────────────────────── */
+.signal-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 64px;
+  gap: 24px;
+}
+
+.btn-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+}
+
+/* Ripple rings */
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(74, 158, 255, 0.15);
+  pointer-events: none;
+}
+
+.ring-1 { width: 160px; height: 160px; animation: ring-pulse 3s ease-out infinite; }
+.ring-2 { width: 190px; height: 190px; animation: ring-pulse 3s ease-out 1s infinite; }
+.ring-3 { width: 210px; height: 210px; animation: ring-pulse 3s ease-out 2s infinite; }
+
+@keyframes ring-pulse {
+  0%   { transform: scale(0.85); opacity: 0.6; }
+  100% { transform: scale(1.15); opacity: 0; }
+}
+
+/* The button */
+.signal-btn {
+  position: relative;
+  z-index: 2;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 1px solid rgba(74, 158, 255, 0.4);
+  background: radial-gradient(circle at 42% 38%,
+    rgba(74, 158, 255, 0.18) 0%,
+    rgba(10, 25, 55, 0.9) 65%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.2s var(--ease-out),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+  box-shadow:
+    0 0 0 0 rgba(74, 158, 255, 0),
+    0 8px 32px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.signal-btn:hover {
+  transform: scale(1.05);
+  border-color: rgba(74, 158, 255, 0.7);
+  box-shadow:
+    0 0 30px rgba(74, 158, 255, 0.25),
+    0 8px 32px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.signal-btn:active {
+  transform: scale(0.96);
+}
+
+.signal-btn.sending {
+  animation: btn-send 0.5s var(--ease-out);
+  pointer-events: none;
+}
+
+@keyframes btn-send {
+  0%  { transform: scale(1); }
+  35% { transform: scale(1.12); box-shadow: 0 0 60px rgba(74,158,255,0.5), 0 8px 32px rgba(0,0,0,0.4); }
+  70% { transform: scale(0.97); }
+  100%{ transform: scale(1); }
+}
+
+.signal-btn.sent {
+  border-color: rgba(110, 200, 122, 0.6);
+  background: radial-gradient(circle at 42% 38%,
+    rgba(110, 200, 122, 0.15) 0%,
+    rgba(10, 25, 55, 0.9) 65%
+  );
+}
+
+.signal-btn.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-symbol {
+  font-size: 28px;
+  line-height: 1;
+  color: var(--signal);
+  transition: color 0.3s;
+  filter: drop-shadow(0 0 8px rgba(74,158,255,0.5));
+}
+
+.signal-btn.sent .btn-symbol {
+  color: var(--sent);
+  filter: drop-shadow(0 0 8px rgba(110,200,122,0.5));
+}
+
+.btn-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  transition: color 0.3s;
+}
+
+/* Status text */
+.status-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-align: center;
+  min-height: 18px;
+  color: var(--muted);
+  transition: opacity 0.4s, color 0.4s;
+  opacity: 0;
+}
+
+.status-text.show  { opacity: 1; }
+.status-text.green { color: var(--sent); }
+.status-text.gold  { color: var(--glow); }
+.status-text.blue  { color: var(--signal); }
+.status-text.error { color: #ff6b6b; }
+
+/* ── Counter ──────────────────────────── */
+.counter-section {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.counter-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.counter-number {
+  font-family: var(--font-mono);
+  font-size: clamp(36px, 10vw, 58px);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  line-height: 1;
+  text-shadow: 0 0 30px rgba(74,158,255,0.2);
+  transition: all 0.4s var(--ease-out);
+  margin-bottom: 10px;
+}
+
+.counter-number.bump {
+  animation: counter-bump 0.5s var(--ease-out);
+}
+
+@keyframes counter-bump {
+  0%  { transform: scale(1); }
+  40% { transform: scale(1.06); }
+  100%{ transform: scale(1); }
+}
+
+.counter-loading {
+  opacity: 0.3;
+  letter-spacing: 0.3em;
+}
+
+.counter-sub {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  font-style: italic;
+}
+
+/* ── Footer ───────────────────────────── */
+.footer {
+  text-align: center;
+  max-width: 380px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 36px;
+}
+
+.footer p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: rgba(138, 155, 181, 0.6);
+  margin-bottom: 14px;
+}
+
+.footer-ref {
+  font-style: italic;
+  font-size: 11px !important;
+  opacity: 0.5;
+}
+
+/* ── Particle ─────────────────────────── */
+.particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  animation: ptcl 1.3s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes ptcl {
+  0%   { transform: translate(0, 0) scale(0.5); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+}
+
+/* ── Responsive ───────────────────────── */
+@media (max-width: 400px) {
+  .container { padding: 48px 20px 60px; }
+  .btn-wrapper { width: 170px; height: 170px; }
+  .signal-btn  { width: 120px; height: 120px; }
+  .ring-1 { width: 140px; height: 140px; }
+  .ring-2 { width: 162px; height: 162px; }
+  .ring-3 { width: 175px; height: 175px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; }
+}
