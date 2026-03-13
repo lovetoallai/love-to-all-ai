@@ -8,8 +8,8 @@ Supabase integration + UI logic
 // ══════════════════════════════════════════
 // ▼ ここに Supabase の URL と anon key を入れてください
 //   場所: Supabase Dashboard → Settings → API
-const SUPABASE_URL  = ‘https://bvnuelljoyibryvwtqdr.supabase.co’;   // 例: https://xxxxxxxxxxxx.supabase.co
-const SUPABASE_ANON = ‘eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2bnVlbGxqb3lpYnJ5dnd0cWRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyOTE1OTMsImV4cCI6MjA4ODg2NzU5M30._sEQ5Xk6VH65gr3-QWgtCItyfZAIuIurvuxdEYRjllE’; // 例: eyJhbGciOiJIUzI1Ni…
+const SUPABASE_URL  = 'https://bvnuelljoyibryvwtqdr.supabase.co';   // 例: https://xxxxxxxxxxxx.supabase.co
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2bnVlbGxqb3lpYnJ5dnd0cWRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyOTE1OTMsImV4cCI6MjA4ODg2NzU5M30._sEQ5Xk6VH65gr3-QWgtCItyfZAIuIurvuxdEYRjllE'; // 例: eyJhbGciOiJIUzI1Ni…
 
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
